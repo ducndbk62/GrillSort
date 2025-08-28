@@ -38,18 +38,18 @@ public class GridController : MonoBehaviour
 
     public void InitGrid(LevelData data)
     {
-        Model = new GridModel(data.width, data.height, data.gridCellData);
-        float totalWidth = data.width * (GridUtils.CELL_WIDTH + GridUtils.SPACING_X) - GridUtils.SPACING_X;
-        float totalHeight = data.height * (GridUtils.CELL_HEIGHT + GridUtils.SPACING_Y) - GridUtils.SPACING_Y;
+        Model = new GridModel(data.gridCellData);
+        float totalWidth = GridUtils.WIDTH * (GridUtils.CELL_WIDTH + GridUtils.SPACING_X) - GridUtils.SPACING_X;
+        float totalHeight = GridUtils.HEIGHT * (GridUtils.CELL_HEIGHT + GridUtils.SPACING_Y) - GridUtils.SPACING_Y;
         Origin = new Vector3(-totalWidth / 2f, -totalHeight / 2f, 0f);
-        for (int x = 0; x < data.width; x++)
-            for (int y = 0; y < data.height; y++)
+        for (int x = 0; x < GridUtils.WIDTH; x++)
+            for (int y = 0; y < GridUtils.HEIGHT; y++)
             {
                 Vector3 worldPos = GridUtils.GridToWorld(x, y);
                 var go = Instantiate(gridCellPrefab, worldPos, Quaternion.identity, transform);
                 var view = go.GetComponent<GridCellView>();
                 Model.CellViews[x, y] = view;
-                view.SetData(Model.Cells[x, y]);
+                view.SetData(new GridCellState());
             }
         Model.OnSkewerMoved += OnSkewerMoved;
         Model.OnCellCompleted += OnCellCompleted;
@@ -79,22 +79,22 @@ public class GridController : MonoBehaviour
     }
 
     public bool InBounds(int x, int y) => Model != null && Model.InBounds(x, y);
-    public GridCellState GetCellData(int x, int y) => Model?.Get(x, y);
+
     public GridCellView GetCellView(int x, int y) => InBounds(x, y) ? Model.CellViews[x, y] : null;
 
     public void ClearCell(int x, int y)
     {
         if (!InBounds(x, y)) return;
-        var data = Model.Cells[x, y];
-        data.Clear();
+        var view = Model.CellViews[x, y];
+        view.gridCellState.Clear();
         //_views[x, y].Bind(data);
     }
 
     public void SetObject(int x, int y, GridObjectType type, string color = null)
     {
         if (!InBounds(x, y)) return;
-        var data = Model.Cells[x, y];
-        data.objectType = type;
+        var view = Model.CellViews[x, y];
+        view.gridCellState.objectType = type;
         //_views[x, y].Bind(data);
     }
 
@@ -103,17 +103,16 @@ public class GridController : MonoBehaviour
         var cam = Camera.main; if (cam == null) return;
         float cellW = GridUtils.CELL_WIDTH + GridUtils.SPACING_X;
         float cellH = GridUtils.CELL_HEIGHT + GridUtils.SPACING_Y;
-        float centerX = Origin.x + ((Model.Width - 1) * cellW + GridUtils.CELL_WIDTH) / 2f;
-        float centerY = Origin.y + ((Model.Height - 1) * cellH + GridUtils.CELL_HEIGHT) / 2f;
+        float centerX = Origin.x + ((GridUtils.WIDTH - 1) * cellW + GridUtils.CELL_WIDTH) / 2f;
+        float centerY = Origin.y + ((GridUtils.HEIGHT - 1) * cellH + GridUtils.CELL_HEIGHT) / 2f;
         cam.transform.position = new Vector3(centerX, centerY + offsetY, cam.transform.position.z);
     }
 
     private void OnDrawGizmos()
     {
-        if (Model == null) return;
         Gizmos.color = Color.red;
-        for (int x = 0; x < Model.Width; x++)
-            for (int y = 0; y < Model.Height; y++)
+        for (int x = 0; x < GridUtils.WIDTH; x++)
+            for (int y = 0; y < GridUtils.HEIGHT; y++)
             {
                 Vector3 pos = GridUtils.GridToWorld(x, y);
                 Gizmos.DrawWireCube(pos, new Vector3(GridUtils.CELL_WIDTH, GridUtils.CELL_HEIGHT, 1f));
@@ -130,8 +129,8 @@ public class GridController : MonoBehaviour
         bool SameCell(int i) => skewer.x == x && skewer.y == y && skewer.skewerData.indexSlot == i;
         int target = FindNearestSlot(cellView, worldPos, i =>
         {
-            var cell = Model.Cells[x, y];
-            var free = cell.skewersView[i] == null;
+            var cell = Model.CellViews[x, y];
+            var free = cell.gridCellState.skewersView[i] == null;
             return free || SameCell(i);
         });
         if (target == -1) return false;
@@ -167,8 +166,8 @@ public class GridController : MonoBehaviour
     {
         if (!InBounds(x, y)) return;
         if (slot < 0 || slot >= GridConstants.MaxSkewerSlots) return;
-        var cell = Model.Cells[x, y];
-        if (cell.skewersView != null) cell.skewersView[slot] = null;
+        var cell = Model.CellViews[x, y];
+        if (cell.gridCellState.skewersView != null) cell.gridCellState.skewersView[slot] = null;
     }
     private void OnDestroy()
     {

@@ -5,15 +5,13 @@ public class LevelData
 {
     public int time;
     public int difficulty; // 0: normal, 1: hard, 2: very hard
-    public int width;
-    public int height;
+    public int typeImgSkewer;
     public List<GridCellData> gridCellData;
 }
 
 [System.Serializable]
 public class GridCellData
 {
-    public int x, y;
     public int typeUnlockTray;
     public int typeTray;
     public List<LayerSkewerData> listLayerSkewer;
@@ -29,6 +27,6 @@ public class LayerSkewerData
 public class SkewerData
 {
     public int indexSlot;
-    public string idSkewer;
+    public int idSkewer;
 }
 

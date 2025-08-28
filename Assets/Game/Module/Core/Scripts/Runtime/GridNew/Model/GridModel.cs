@@ -5,9 +5,6 @@ using System.Linq;
 
 public sealed class GridModel
 {
-    public int Width { get; }
-    public int Height { get; }
-    public GridCellState[,] Cells { get; }
     public GridCellView[,] CellViews { get; set; }
 
     public struct SkewerMoved
@@ -25,46 +22,33 @@ public sealed class GridModel
     public event Action<SkewerMoved> OnSkewerMoved;
     public event Action<CellCompleted> OnCellCompleted;
 
-    public GridModel(int w, int h, List<GridCellData> gridCellData)
+    public GridModel(List<GridCellData> gridCellData)
     {
-        Width = w; Height = h;
-        Cells = new GridCellState[w, h];
-        CellViews = new GridCellView[w, h];
-        var dicMap = gridCellData.ToDictionary(c => new Vector2Int(c.x, c.y));
-        for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
-            {
-                var state = new GridCellState();
-                if (dicMap.TryGetValue(new Vector2Int(x, y), out var data))
-                {
-                    state.gridCellData = data;
-                }
-                Cells[x, y] = state;
-            }
+        CellViews = new GridCellView[GridUtils.WIDTH, GridUtils.HEIGHT];
+
     }
 
-    public bool InBounds(int x, int y) => x >= 0 && x < Width && y >= 0 && y < Height;
-    public GridCellState Get(int x, int y) => InBounds(x, y) ? Cells[x, y] : null;
+    public bool InBounds(int x, int y) => x >= 0 && x < GridUtils.WIDTH && y >= 0 && y < GridUtils.HEIGHT;
 
     public bool TrySnap(SkewerView skewerView, int toX, int toY, int toSlot)
     {
         int fx = skewerView.x, fy = skewerView.y, fs = skewerView.skewerData.indexSlot;
         if (!InBounds(toX, toY)) return false;
-        var cell = Cells[toX, toY];
-        if (cell.objectType == GridObjectType.Empty) return false;
+        var cell = CellViews[toX, toY];
+        if (cell.gridCellState.objectType == GridObjectType.Empty) return false;
         if (toSlot < 0 || toSlot >= GridConstants.MaxSkewerSlots) return false;
-        if (cell.skewersView[toSlot] != null) return false;
+        if (cell.gridCellState.skewersView[toSlot] != null) return false;
         if (skewerView.x == toX && skewerView.y == toY && skewerView.skewerData.indexSlot == toSlot) return true;
         if (skewerView.x >= 0 && InBounds(skewerView.x, skewerView.y))
         {
-            var oldCell = Cells[skewerView.x, skewerView.y];
-            if (skewerView.skewerData.indexSlot >= 0 && skewerView.skewerData.indexSlot < oldCell.skewersView.Length)
+            var oldCell = CellViews[skewerView.x, skewerView.y];
+            if (skewerView.skewerData.indexSlot >= 0 && skewerView.skewerData.indexSlot < oldCell.gridCellState.skewersView.Length)
             {
-                oldCell.skewersView[skewerView.skewerData.indexSlot] = null;
+                oldCell.gridCellState.skewersView[skewerView.skewerData.indexSlot] = null;
             }
         }
         skewerView.x = toX; skewerView.y = toY; skewerView.skewerData.indexSlot = toSlot;
-        cell.skewersView[toSlot] = skewerView;
+        cell.gridCellState.skewersView[toSlot] = skewerView;
         OnSkewerMoved?.Invoke(new SkewerMoved(skewerView, fx, fy, fs, toX, toY, toSlot));
         if (IsCellComplete(toX, toY))
         {
@@ -78,17 +62,17 @@ public sealed class GridModel
     public bool IsCellComplete(int x, int y)
     {
         if (!InBounds(x, y)) return false;
-        var s = Cells[x, y].skewersView;
+        var s = CellViews[x, y].gridCellState.skewersView;
         if (s == null || s.Length == 0) return false;
         for (int i = 0; i < s.Length; i++) if (s[i] == null) return false;
-        string id = s[0].skewerData.idSkewer;
+        int id = s[0].skewerData.idSkewer;
         for (int i = 1; i < s.Length; i++) if (s[i].skewerData.idSkewer != id) return false;
         return true;
     }
 
     private void ClearCellData(int x, int y)
     {
-        var s = Cells[x, y].skewersView;
+        var s = CellViews[x, y].gridCellState.skewersView;
         for (int i = 0; i < s.Length; i++) s[i] = null;
     }
 }

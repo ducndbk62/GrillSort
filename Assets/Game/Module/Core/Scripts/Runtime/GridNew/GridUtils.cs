@@ -2,6 +2,8 @@ using UnityEngine;
 
 public static class GridUtils
 {
+    public const int WIDTH = 3;
+    public const int HEIGHT = 4;
     public const float CELL_WIDTH = 1.5f;
     public const float CELL_HEIGHT = 1f;
     public const float SPACING_X = 0.2f;
@@ -26,7 +28,7 @@ public static class GridUtils
         //return new Vector2Int(x, y);
 
         var gc = GridController.Instance;
-        if (gc == null || gc.Model == null) return new Vector2Int(-1, -1);
+        if (gc == null) return new Vector2Int(-1, -1);
         float w = CELL_WIDTH;
         float h = CELL_HEIGHT;
         float sx = SPACING_X;
@@ -34,7 +36,7 @@ public static class GridUtils
         Vector3 offset = worldPos - gc.Origin;
         int gx = Mathf.FloorToInt(offset.x / (w + sx));
         int gy = Mathf.FloorToInt(offset.y / (h + sy));
-        if (gx < 0 || gy < 0 || gx >= gc.Model.Width || gy >= gc.Model.Height)
+        if (gx < 0 || gy < 0 || gx >= WIDTH || gy >= HEIGHT)
             return new Vector2Int(-1, -1);
         float lx = offset.x - gx * (w + sx);
         float ly = offset.y - gy * (h + sy);
