@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/Sirenix/Odin Inspector/Config/Editor/AOTGenerationConfig.asset.meta
+guid: fa73458c44cc4cb4894e23446735e847
+========
+guid: 570d371701efa2d4780685e0bb219806
+>>>>>>>> origin/develop:Assets/FalconAssets/Modules/Core/Network/Resources/NetworkSettings.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
