@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4222430021001551969}
   - component: {fileID: 5560329708830443643}
-  - component: {fileID: 9013952523488401151}
+  - component: {fileID: 3610240390132635473}
   m_Layer: 0
   m_Name: GridCell
   m_TagString: Untagged
@@ -50,6 +50,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9013952523488401151
+--- !u!114 &3610240390132635473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,17 +97,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6886033949981790136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bca02fe3705bc7479db52945b0c5037, type: 3}
+  m_Script: {fileID: 11500000, guid: 38ec14ae4d8a0654ba7ebb6874807492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 0
   spriteRenderer: {fileID: 5560329708830443643}
-  gridState:
+  gridCellState:
     objectType: 0
     gridCellData:
-      x: 0
-      y: 0
-      isUnlockAds: 0
-    skewerViews:
+      typeUnlockTray: 0
+      typeTray: 0
+      listLayerSkewer: []
+    skewersView:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

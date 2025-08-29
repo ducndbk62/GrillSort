@@ -270,9 +270,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5511244912137933847}
-  - component: {fileID: 3406353171995323156}
   - component: {fileID: 2280652173159016286}
-  - component: {fileID: 7816008528850704904}
+  - component: {fileID: 4171128917566886717}
+  - component: {fileID: 5269112111991364603}
   m_Layer: 6
   m_Name: ThitNuongVang
   m_TagString: Block
@@ -298,18 +298,6 @@ Transform:
   - {fileID: 5598723858904342501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3406353171995323156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8002701775368811231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ef1fb27adffbe47a6163177bfd19d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2280652173159016286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -356,7 +344,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5, y: 4.5}
   m_EdgeRadius: 0
---- !u!114 &7816008528850704904
+--- !u!114 &4171128917566886717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,11 +353,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8002701775368811231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b536dfe8b470d454090ab2871351c26e, type: 3}
+  m_Script: {fileID: 11500000, guid: e705165025927704488e2eedfcc7ae82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 0
   skewerData:
-    x: 0
-    y: 0
     indexSlot: 0
-    idSkewer: 
+    idSkewer: 0
+--- !u!114 &5269112111991364603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8002701775368811231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7806e429ec9a2a341bba39b5f3cf622e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -38,22 +38,56 @@ public class GridController : MonoBehaviour
 
     public void InitGrid(LevelData data)
     {
-        Model = new GridModel(data.gridCellData);
+        Model = new GridModel();
+        Model.CellViews = new GridCellView[GridUtils.WIDTH, GridUtils.HEIGHT];
+        Model.OnSkewerMoved += OnSkewerMoved;
+        Model.OnCellCompleted += OnCellCompleted;
+        //---------------------------------------------
         float totalWidth = GridUtils.WIDTH * (GridUtils.CELL_WIDTH + GridUtils.SPACING_X) - GridUtils.SPACING_X;
         float totalHeight = GridUtils.HEIGHT * (GridUtils.CELL_HEIGHT + GridUtils.SPACING_Y) - GridUtils.SPACING_Y;
         Origin = new Vector3(-totalWidth / 2f, -totalHeight / 2f, 0f);
+        SetDataModel(data.gridCellData);
+        //---------------------------------------------
+        CenterCamera();
+    }
+
+    public void SetDataModel (List<GridCellData> gridCellData)
+    {
+        List<Vector2Int> allPositions = new List<Vector2Int>();
         for (int x = 0; x < GridUtils.WIDTH; x++)
+        {
             for (int y = 0; y < GridUtils.HEIGHT; y++)
             {
-                Vector3 worldPos = GridUtils.GridToWorld(x, y);
-                var go = Instantiate(gridCellPrefab, worldPos, Quaternion.identity, transform);
-                var view = go.GetComponent<GridCellView>();
-                Model.CellViews[x, y] = view;
-                view.SetData(new GridCellState());
+                allPositions.Add(new Vector2Int(x, y));
             }
-        Model.OnSkewerMoved += OnSkewerMoved;
-        Model.OnCellCompleted += OnCellCompleted;
-        CenterCamera();
+        }
+        Shuffle(allPositions);
+        for (int i = 0; i < gridCellData.Count && i < allPositions.Count; i++)
+        {
+            Vector2Int pos = allPositions[i];
+            GridCellData cellData = gridCellData[i];
+            CloneTray(pos, cellData);
+        }
+    }
+
+    private void Shuffle(List<Vector2Int> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int rand = UnityEngine.Random.Range(0, i + 1);
+            Vector2Int temp = list[i];
+            list[i] = list[rand];
+            list[rand] = temp;
+        }
+    }
+
+    public void CloneTray(Vector2Int pos, GridCellData cellData)
+    {
+        Vector3 worldPos = GridUtils.GridToWorld(pos.x, pos.y);
+        var go = Instantiate(gridCellPrefab, worldPos, Quaternion.identity, transform);
+        var view = go.GetComponent<GridCellView>();
+        view.SetData(pos.x, pos.y, cellData);
+        Model.CellViews[pos.x, pos.y] = view;
     }
 
     private void OnSkewerMoved(GridModel.SkewerMoved e)

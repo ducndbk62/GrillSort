@@ -22,12 +22,6 @@ public sealed class GridModel
     public event Action<SkewerMoved> OnSkewerMoved;
     public event Action<CellCompleted> OnCellCompleted;
 
-    public GridModel(List<GridCellData> gridCellData)
-    {
-        CellViews = new GridCellView[GridUtils.WIDTH, GridUtils.HEIGHT];
-
-    }
-
     public bool InBounds(int x, int y) => x >= 0 && x < GridUtils.WIDTH && y >= 0 && y < GridUtils.HEIGHT;
 
     public bool TrySnap(SkewerView skewerView, int toX, int toY, int toSlot)

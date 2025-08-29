@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GridCellView : MonoBehaviour
 {
-    [HideInInspector] public int x, y;
+    public int x, y;
 
     public SpriteRenderer spriteRenderer;
 
@@ -11,10 +11,12 @@ public class GridCellView : MonoBehaviour
 
     private SkewerView[] arrrSkewerView = new SkewerView[GridConstants.MaxSkewerSlots];
 
-    public void SetData(GridCellState data)
+    public void SetData(int x, int y, GridCellData data)
     {
-        gridCellState = data;
-        spriteRenderer.enabled = data.objectType == GridObjectType.BakingTray;
+        this.x = x;
+        this.y = y;
+        gridCellState.gridCellData = data;
+        spriteRenderer.enabled = gridCellState.objectType == GridObjectType.BakingTray;
         SetViewUI();
     }
 
