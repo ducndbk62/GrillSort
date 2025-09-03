@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &722664416602276526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8494744906980513532}
+  m_Layer: 0
+  m_Name: MainInGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8494744906980513532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722664416602276526}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.06210366, y: 0.6820408, z: 0.031188315}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7277466018274372764}
+  - {fileID: 4855047996377210340}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7345940640504076985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4855047996377210340}
+  - component: {fileID: 197735880665784640}
+  - component: {fileID: 744646595006887329}
+  - component: {fileID: 1776699818092925586}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4855047996377210340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345940640504076985}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06210366, y: -0.6820408, z: -0.031188315}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8494744906980513532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &197735880665784640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345940640504076985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4df5acad93711498a848e539bd6011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewBinder: {fileID: 744646595006887329}
+  gridCellPrefab: {fileID: 634515049327008134, guid: 5a434aebf8bef9a4a867e938b3603593, type: 3}
+--- !u!114 &744646595006887329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345940640504076985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e7a3b2caecc5e46ab9771946c3b4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabLibrary: {fileID: 1776699818092925586}
+--- !u!114 &1776699818092925586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345940640504076985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74891784c0287734f90cb077f4b92825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridCellPrefab: {fileID: 634515049327008134, guid: 5a434aebf8bef9a4a867e938b3603593, type: 3}
+  skewerPrefab: {fileID: 5299869818935521911, guid: ff5c945c2b0cdf846b878b582ddd9c9f, type: 3}
+  objPlate: {fileID: 4917696821863034187, guid: 655107f41a290bf4ca77355caa5935b6, type: 3}
+  objPlateClear: {fileID: 0}
+  skewerPrefabs:
+  - name: Food_Green_1
+    prefab: {fileID: 5305848542099786728, guid: 566a1ee6da05c1f4ab30cc1ce1390307, type: 3}
+  - name: Food_Green_2
+    prefab: {fileID: 2523591164822553852, guid: ac273033825164347963a1ca44bf267f, type: 3}
+  - name: Food_Green_3
+    prefab: {fileID: 8462336609700679851, guid: 3185bbc7f5869544491a24a874404da6, type: 3}
+  - name: Food_Green_4
+    prefab: {fileID: 5571610609293954698, guid: 36c3405c71f64bc419e8244364cbcddb, type: 3}
+  - name: Food_Green_5
+    prefab: {fileID: 2651351029010974870, guid: 672e3d96d1fb6a5498fdba8c7117e019, type: 3}
+--- !u!1 &8019858214266375291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7277466018274372764}
+  - component: {fileID: 4137964354036852901}
+  m_Layer: 0
+  m_Name: LevelLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7277466018274372764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019858214266375291}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06210366, y: -0.6820408, z: -0.031188315}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8494744906980513532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4137964354036852901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019858214266375291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a70ba3ae6ecd14b8f11f978bb35c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelJson: {fileID: 4900000, guid: 017f3987dea05784985a4b12aef4c4ff, type: 3}
+  viewBinder: {fileID: 0}
+  prefabLibrary: {fileID: 0}
+  gridController: {fileID: 197735880665784640}

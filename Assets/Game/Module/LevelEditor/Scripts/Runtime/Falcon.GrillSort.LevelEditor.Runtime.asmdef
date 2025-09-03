@@ -3,7 +3,8 @@
     "rootNamespace": "Falcon.GrillSort.LevelEditor.Runtime",
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:6fe3aaf0c5c2a824f8c081cdb93f16aa"
+        "GUID:6fe3aaf0c5c2a824f8c081cdb93f16aa",
+        "GUID:045466b1589496a49bdbf14a700a5b30"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
