@@ -4,20 +4,162 @@
   "typeImgSkewer": 0,
   "gridCellData": [
     {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
+      "typeUnlockTray": 0,
+      "typeTray": 1,
       "listLayerSkewer": [
         {
           "listSkewerData": [
             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
+            { "indexSlot": 2, "idSkewer": 4 }
+          ]
+        },
+        {
+          "listSkewerData": [
+             { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 4 }
+          ]
+        },
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 2, "idSkewer": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "typeUnlockTray": 0,
+      "typeTray": 1,
+      "listLayerSkewer": [
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 3 },
+            { "indexSlot": 2, "idSkewer": 3 }
+          ]
+        },
+        {
+          "listSkewerData": [
+             { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        },
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "typeUnlockTray": 0,
+      "typeTray": 1,
+      "listLayerSkewer": [
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 4 }
+          ]
+        },
+        {
+          "listSkewerData": [
+             { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 2, "idSkewer": 2 }
+          ]
+        },
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 2, "idSkewer": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "typeUnlockTray": 0,
+      "typeTray": 1,
+      "listLayerSkewer": [
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 3 },
+            { "indexSlot": 1, "idSkewer": 1 }
+          ]
+        },
+        {
+          "listSkewerData": [
+             { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        },
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "typeUnlockTray": 0,
+      "typeTray": 1,
+      "listLayerSkewer": [
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 1 }
+          ]
+        },
+        {
+          "listSkewerData": [
+             { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        },
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "typeUnlockTray": 0,
+      "typeTray": 1,
+      "listLayerSkewer": [
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 1 }
+          ]
+        },
+        {
+          "listSkewerData": [
+             { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        },
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
+            { "indexSlot": 1, "idSkewer": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "typeUnlockTray": 0,
+      "typeTray": 1,
+      "listLayerSkewer": [
+        {
+          "listSkewerData": [
+            { "indexSlot": 0, "idSkewer": 0 },
             { "indexSlot": 2, "idSkewer": 1 }
           ]
         },
         {
           "listSkewerData": [
              { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
             { "indexSlot": 2, "idSkewer": 1 }
           ]
         },
@@ -31,20 +173,18 @@
       ]
     },
     {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
+      "typeUnlockTray": 0,
+      "typeTray": 1,
       "listLayerSkewer": [
         {
           "listSkewerData": [
             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
             { "indexSlot": 2, "idSkewer": 1 }
           ]
         },
         {
           "listSkewerData": [
              { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
             { "indexSlot": 2, "idSkewer": 1 }
           ]
         },
@@ -58,20 +198,18 @@
       ]
     },
     {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
+      "typeUnlockTray": 0,
+      "typeTray": 1,
       "listLayerSkewer": [
         {
           "listSkewerData": [
             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
             { "indexSlot": 2, "idSkewer": 1 }
           ]
         },
         {
           "listSkewerData": [
              { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
             { "indexSlot": 2, "idSkewer": 1 }
           ]
         },
@@ -85,149 +223,14 @@
       ]
     },
     {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
+      "typeUnlockTray": 0,
+      "typeTray": 1,
       "listLayerSkewer": [
         {
           "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 2 }
-          ]
-        }
-      ]
-    },
-    {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
-      "listLayerSkewer": [
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 2 }
-          ]
-        }
-      ]
-    },
-    {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
-      "listLayerSkewer": [
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 2 }
-          ]
-        }
-      ]
-    },
-    {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
-      "listLayerSkewer": [
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 2 }
-          ]
-        }
-      ]
-    },
-    {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
-      "listLayerSkewer": [
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-             { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 1 }
-          ]
-        },
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 2 },
-            { "indexSlot": 2, "idSkewer": 2 }
-          ]
-        }
-      ]
-    },
-    {
-      "typeUnlockTray": 1,
-      "typeTray": 2,
-      "listLayerSkewer": [
-        {
-          "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 0 },
-            { "indexSlot": 1, "idSkewer": 1 },
-            { "indexSlot": 2, "idSkewer": 1 }
+            { "indexSlot": 0, "idSkewer": 2 },
+            { "indexSlot": 1, "idSkewer": 3 },
+            { "indexSlot": 2, "idSkewer": 4 }
           ]
         },
         {

@@ -16,6 +16,7 @@ public class GridCellData
 {
     public int typeUnlockTray;
     public int typeTray;
+    public int unlockOrContinueCount; // Dung de xem id mo khoa , hoac dung de dem
     public List<LayerSkewerData> listLayerSkewer;
 }
 

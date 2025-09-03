@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewBinder: {fileID: 744646595006887329}
-  gridCellPrefab: {fileID: 634515049327008134, guid: 5a434aebf8bef9a4a867e938b3603593, type: 3}
 --- !u!114 &744646595006887329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a70ba3ae6ecd14b8f11f978bb35c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelJson: {fileID: 4900000, guid: 017f3987dea05784985a4b12aef4c4ff, type: 3}
-  viewBinder: {fileID: 0}
-  prefabLibrary: {fileID: 0}
+  levelJson: {fileID: 4900000, guid: 1bdfa6a5b214cce4eb9cfbec50aae8b2, type: 3}
   gridController: {fileID: 197735880665784640}

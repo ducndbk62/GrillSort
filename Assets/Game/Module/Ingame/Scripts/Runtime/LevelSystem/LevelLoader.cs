@@ -1,12 +1,10 @@
-using System.Linq;
+using System.Collections;
 using UnityEngine;
 
 public class LevelLoader : MonoBehaviour
 {
     [Header("Setup")]
     public TextAsset levelJson;
-    public ViewBinder viewBinder;
-    public PrefabLibrary prefabLibrary;
     public GridController gridController;
 
     public void Update()
@@ -15,6 +13,18 @@ public class LevelLoader : MonoBehaviour
         {
             LoadLevel(levelJson);
         }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(Test());
+    }
+
+    private IEnumerator Test()
+    {
+        Application.targetFrameRate = 60;
+        yield return new WaitForSeconds(3f);
+        LoadLevel(levelJson);
     }
 
 

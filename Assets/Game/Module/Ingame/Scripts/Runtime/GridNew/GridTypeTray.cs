@@ -1,8 +1,8 @@
 public enum GridTypeUnlockTray
 {
     Empty,
-    Food, // khay nuong
-    Ads, // Khay dung ko nuong
+    Food, // Unlock bang thit
+    Ads,
 }
 
 public enum GridTypeTray
