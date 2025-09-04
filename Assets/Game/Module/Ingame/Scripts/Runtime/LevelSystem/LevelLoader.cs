@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader : Singleton<LevelLoader>
 {
     [Header("Setup")]
     public TextAsset levelJson;
@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
     private IEnumerator Test()
     {
         Application.targetFrameRate = 60;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         LoadLevel(levelJson);
     }
 

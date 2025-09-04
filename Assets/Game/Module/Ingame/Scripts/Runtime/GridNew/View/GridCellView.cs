@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Falcon.GrillSort.Ingame.Runtime;
 
 public class GridCellView : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GridCellView : MonoBehaviour
     public GridCellState gridCellState;
     private List<GameObject> listObjPlate = new();
     public SkewerView[] skewersViewPlate = new SkewerView[GridConstants.MaxSkewerSlots];
+    public GridDoorView gridDoorView;
+    //---------------------------------------------------------------------
+    private float timeAction = 0.2f;
 
     public void SetData(int x, int y, GridCellData data)
     {
@@ -16,6 +20,7 @@ public class GridCellView : MonoBehaviour
         this.y = y;
         gridCellState.gridCellData = data;
         gridCellState.SetTypeFirstGame();
+        SetViewUnlockGrid();
         SetFirstSkewerToTray();
     }
 
@@ -30,7 +35,7 @@ public class GridCellView : MonoBehaviour
             {
                 Vector3 localPos = GridUtils.SLOT_POSITIONS[index];
                 gridCellState.skewersView[index] =
-                    GridController.Instance.viewBinder.CreateSkewer(x, y, skewerData, transform, localPos);
+                    GridController.Instance.viewBinder.CreateSkewerData(x, y, skewerData, transform, localPos);
             }
         }
         data.listLayerSkewer.RemoveAt(0);
@@ -46,10 +51,8 @@ public class GridCellView : MonoBehaviour
                 basePosY += offsetY;
             }
         }
-        SetCacheLayerNext();
+        SetCacheLayerNext(true);
     }
-
-    private float timeAction = 0.2f;
 
     public void NextLayer()
     {
@@ -75,7 +78,7 @@ public class GridCellView : MonoBehaviour
         SetCacheLayerNext();
     }
 
-    private void SetCacheLayerNext()
+    private void SetCacheLayerNext(bool isFirst = false)
     {
         var data = gridCellState.gridCellData;
         if (data.listLayerSkewer.Count == 0) return;
@@ -86,9 +89,9 @@ public class GridCellView : MonoBehaviour
             if (index >= 0 && index < GridConstants.MaxSkewerSlots)
             {
                 Vector3 localPos = GridUtils.SLOT_PLATES[index];
-                SkewerView view = GridController.Instance.viewBinder.CreateSkewer(x, y, skewerData, lastPlate.transform, localPos);
+                SkewerView view = GridController.Instance.viewBinder.CreateSkewerData(x, y, skewerData, lastPlate.transform, localPos);
                 Transform t = view.transform;
-                t.localScale = Vector3.zero;
+                t.localScale = isFirst ? new Vector3(0.5f, 0.5f, 1f) : Vector3.zero;
                 t.eulerAngles = new Vector3(0, 0, -35);
                 view.boxCollider.enabled = false;
                 skewersViewPlate[index] = view;
@@ -153,7 +156,6 @@ public class GridCellView : MonoBehaviour
     {
         if (skewer == null || slot < 0 || slot >= gridCellState.skewersView.Length) return;
         skewer.transform.SetParent(transform);
-        //skewer.transform.localPosition = GridUtils.SLOT_POSITIONS[slot];
         skewer.transform.DOLocalMove(GridUtils.SLOT_POSITIONS[slot] , 0.15f).SetEase(Ease.OutBack);
         skewer.transform.localRotation = Quaternion.identity;
     }
@@ -174,5 +176,30 @@ public class GridCellView : MonoBehaviour
         Debug.Log("SetViewUI called");
     }
 
-  
+    #region Custom Unlock Tray
+
+    private void SetViewUnlockGrid()
+    {
+        if (gridCellState.typeUnlockTray == GridTypeUnlockTray.FoodDoor)
+        {
+            int id = gridCellState.gridCellData.unlockOrContinueCount;
+            if (!GridController.Instance._dicLockFood.ContainsKey(id))
+            {
+                GridController.Instance._dicLockFood[id] = new List<GridCellView>();
+            }
+            GridController.Instance._dicLockFood[id].Add(this);
+            //-------------------------------------------------------------------------
+            var objLock = GridController.Instance.viewBinder.CreateTrayDoor(transform);
+            gridDoorView = objLock.GetComponent<GridDoorView>();
+            gridDoorView.SetView(id);
+        }
+    }
+
+    public void StartUnlockTrayFood()
+    {
+        gridCellState.SetTypeUnlockTray(GridTypeUnlockTray.Empty);
+        gridDoorView.HideDoor();
+    }
+    #endregion
+
 }

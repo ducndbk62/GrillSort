@@ -29,4 +29,11 @@ public sealed class GridCellState
         for (int i = 0; i < skewersView.Length; i++)
             skewersView[i] = null;
     }
+
+    public bool GetStatusLockTray()
+    {
+        if (typeUnlockTray == GridTypeUnlockTray.FoodDoor || typeUnlockTray == GridTypeUnlockTray.Ads)
+            return true;
+        return false;
+    }
 }

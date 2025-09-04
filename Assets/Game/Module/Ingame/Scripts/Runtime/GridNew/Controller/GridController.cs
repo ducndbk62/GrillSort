@@ -1,12 +1,12 @@
 ﻿using DG.Tweening;
+using Falcon.GrillSort.Ingame.Runtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridController : MonoBehaviour
+public class GridController : Singleton<GridController>
 {
-    public static GridController Instance;
     public ViewBinder viewBinder;
 
     [Header("Grid Settings")]
@@ -15,24 +15,10 @@ public class GridController : MonoBehaviour
     public GridModel Model { get; private set; }
     public Vector3 Origin { get; private set; }
 
-    private readonly Dictionary<Vector2Int, SkewerView> _dicView = new();
-    public void RegisterSkewerView(SkewerView v)
-    {
-        if (v != null && v.skewerData != null) _dicView[new Vector2Int(v.x, v.y)] = v;
-    }
-    public void UnregisterSkewerView(SkewerView v)
-    {
-        if (v != null && v.skewerData != null) 
-        {
-            var key = new Vector2Int(v.x, v.y);
-            _dicView.Remove(key);
-        }
-    }
-    private void Awake()
-    {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-        Instance = this;
-    }
+    //-------------------------Custom Lock------------------------------
+    public Dictionary<int , List<GridCellView>>  _dicLockFood = new();
+
+    public Dictionary<int, SkewerIce> _dicLockSkewerIce = new();
 
     public void InitGrid(LevelData data)
     {
@@ -133,6 +119,8 @@ public class GridController : MonoBehaviour
     {
         if (!InBounds(x, y) || skewer == null || skewer.skewerData == null) return false;
         var cellView = Model.CellViews[x, y];
+        if (cellView == null) return false;
+        if (cellView.gridCellState.GetStatusLockTray()) return false;
         bool SameCell(int i) => skewer.x == x && skewer.y == y && skewer.skewerData.indexSlot == i;
         int target = FindNearestSlot(cellView, worldPos, i =>
         {
@@ -184,20 +172,37 @@ public class GridController : MonoBehaviour
     private void OnCellCompleted(GridModel.CellCompleted e)
     {
         var view = Model.CellViews[e.X, e.Y];
-        GameObject plateClear = viewBinder.CreatePlate(1.8f, view.transform);
-        plateClear.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
-        plateClear.GetComponentInChildren<SpriteRenderer>().sortingOrder = 50;
         for (int i = 0; i < view.gridCellState.skewersView.Length; i++)
         {
-            view.gridCellState.skewersView[i].spriteRendererIcon.sortingOrder = 100;
+            if (view.gridCellState.skewersView[i].GetStatusLock())
+            {
+                return;
+            }
+        }
+        StartCoroutine(OnCellCompletedDelay(view));
+    }
+
+    private IEnumerator OnCellCompletedDelay(GridCellView view)
+    {
+        for (int i = 0; i < view.gridCellState.skewersView.Length; i++)
+        {
             view.gridCellState.skewersView[i].boxCollider.enabled = false;
-            view.gridCellState.skewersView[i].gameObject.transform.SetParent(plateClear.transform);
-            view.gridCellState.skewersView[i].gameObject.transform.DOLocalMove(GridUtils.SLOT_PLATES_CLEAR[i], 0.15f);
-            view.gridCellState.skewersView[i].gameObject.transform.DOScale(new Vector3(0.5f,0.5f,1f), 0.15f);
+        }
+        yield return new WaitForSeconds(0.15f);
+        CheckUnlockTrayFood(view.gridCellState.skewersView[0].skewerData.idSkewer);
+        GameObject plateClear = viewBinder.CreatePlate(1.8f, view.transform);
+        plateClear.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
+        SpriteRenderer sprPlate = plateClear.GetComponentInChildren<SpriteRenderer>();
+        sprPlate.sortingLayerName = "Top";
+        sprPlate.sortingOrder = 1;
+        for (int i = 0; i < view.gridCellState.skewersView.Length; i++)
+        {
+            view.gridCellState.skewersView[i].ClearSkewer(i, plateClear.transform);
             view.gridCellState.skewersView[i] = null;
         }
         StartCoroutine(MovePlateClear(view, plateClear));
     }
+
 
     private IEnumerator MovePlateClear(GridCellView view, GameObject obj)
     {
@@ -207,6 +212,29 @@ public class GridController : MonoBehaviour
         Destroy(obj);
         view.NextLayer();
     }
+
+    public void CheckUnlockTrayFood(int idSkewer)
+    {
+        if (_dicLockFood.Count <= 0) return;
+        if (_dicLockFood.TryGetValue(idSkewer, out var cellList))
+        {
+            foreach (var cell in cellList)
+            {
+                cell.StartUnlockTrayFood();
+            }
+            _dicLockFood.Remove(idSkewer);
+        }
+    }
+
+    public void CheckUnlockSkewerIce()
+    {
+        if (_dicLockSkewerIce.Count <= 0) return;
+        foreach (SkewerIce skewer in _dicLockSkewerIce.Values)
+        {
+            skewer.AttackIce();
+        }
+    }
+
 
     private void OnDestroy()
     {

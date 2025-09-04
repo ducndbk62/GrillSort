@@ -1,7 +1,9 @@
 {
     "name": "Falcon.GrillSort.Ingame.Runtime",
     "rootNamespace": "Falcon.GrillSort.Ingame.Runtime",
-    "references": [],
+    "references": [
+        "GUID:045466b1589496a49bdbf14a700a5b30"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

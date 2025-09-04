@@ -4,7 +4,7 @@
   "typeImgSkewer": 0,
   "gridCellData": [
     {
-      "typeUnlockTray": 0,
+      "typeUnlockTray": 1,
       "typeTray": 1,
       "listLayerSkewer": [
         {
@@ -33,7 +33,7 @@
       "listLayerSkewer": [
         {
           "listSkewerData": [
-            { "indexSlot": 0, "idSkewer": 3 },
+            { "typeSkewer" : 1, "indexSlot": 0, "idSkewer": 3 },
             { "indexSlot": 2, "idSkewer": 3 }
           ]
         },

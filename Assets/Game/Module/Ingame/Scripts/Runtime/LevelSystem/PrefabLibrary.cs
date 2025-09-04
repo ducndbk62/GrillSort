@@ -14,6 +14,7 @@ public class PrefabLibrary : MonoBehaviour
     public GameObject skewerPrefab;
     public GameObject objPlate;
     public GameObject objPlateClear;
-
+    public GameObject objTrayDoor;
+    public GameObject objSkewerIce;
     public List<NamedPrefab> skewerPrefabs;
 }

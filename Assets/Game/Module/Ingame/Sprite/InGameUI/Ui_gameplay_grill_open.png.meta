@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 647f699f9b38e4641939694df2c0b3bf
+guid: 710db105047edf142b6a62f30db046e4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4754962863929344448
-    second: Ui_gameplay_grill_0
+      213: 3201945168173591861
+    second: Ui_gameplay_grill_open_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ui_gameplay_grill_0
+      name: Ui_gameplay_grill_open_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 319
-        height: 266
+        height: 233
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c1cea828850df140800000000000000
-      internalID: 4754962863929344448
+      spriteID: 53de3437a289f6c20800000000000000
+      internalID: 3201945168173591861
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ui_gameplay_grill_0: 4754962863929344448
+      Ui_gameplay_grill_open_0: 3201945168173591861
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

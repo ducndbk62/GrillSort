@@ -14,6 +14,7 @@ public class DraggableObject : MonoBehaviour
 
     // ------ References ------
     private SkewerView skewer;
+    private Camera cam;
 
     // ------ Positioning ------
     private Vector3 dragOffset;
@@ -24,13 +25,12 @@ public class DraggableObject : MonoBehaviour
     private void Awake()
     {
         skewer = GetComponent<SkewerView>();
+        cam = Camera.main;
     }
 
     private void Update()
     {
-        var cam = Camera.main;
         if (cam == null) return;
-
         HandleClickSnap(cam);
         HandleDragging(cam);
     }
@@ -41,15 +41,11 @@ public class DraggableObject : MonoBehaviour
         {
             Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0;
-
             Vector2Int gridPos = GridUtils.WorldToGrid(mouseWorldPos);
-
             var gridController = GridController.Instance;
-            if (gridController != null &&
-                gridController.InBounds(gridPos.x, gridPos.y) &&
+            if (gridController != null && gridController.InBounds(gridPos.x, gridPos.y) &&
                 gridController.TrySnapSkewer(gridPos.x, gridPos.y, skewer, mouseWorldPos))
             {
-                Debug.Log("[DraggableObject] Snap on Click");
                 ActiveDragged = null;
                 skewer.EndMove();
             }
@@ -75,6 +71,10 @@ public class DraggableObject : MonoBehaviour
     {
         var cam = Camera.main;
         if (cam == null) return;
+        Vector2Int gridPos = GridUtils.WorldToGrid(transform.position);
+        var cellView = GridController.Instance.Model.CellViews[gridPos.x, gridPos.y];
+        if (cellView == null || cellView.gridCellState.GetStatusLockTray()) return;
+        if (skewer.GetStatusLock()) return;
         originalPosition = transform.position;
         originalParent = transform.parent;
         mouseDownScreenPosition = Input.mousePosition;
@@ -116,8 +116,7 @@ public class DraggableObject : MonoBehaviour
             gridPos = GridUtils.WorldToGridNearest(dropWorldPos);
         }
         var gridController = GridController.Instance;
-        if (gridController != null &&
-            gridController.InBounds(gridPos.x, gridPos.y) &&
+        if (gridController != null && gridController.InBounds(gridPos.x, gridPos.y) &&
             gridController.TrySnapSkewer(gridPos.x, gridPos.y, skewer, dropWorldPos))
         {
             return;
@@ -128,7 +127,7 @@ public class DraggableObject : MonoBehaviour
     private void ResetToOriginal()
     {
         transform.SetParent(originalParent);
-        //transform.position = originalPosition;
         transform.DOMove(originalPosition, 0.15f).SetEase(Ease.OutBack);
     }
 }
+

@@ -30,6 +30,7 @@ public class LayerSkewerData
 [System.Serializable]
 public class SkewerData
 {
+    public int typeSkewer;
     public int indexSlot;
     public int idSkewer;
 }
@@ -38,6 +39,7 @@ public class SkewerData
 public class ShiperSkewerData
 {
     public int turnShow;
+    public int timeCookedItem; // apply cho toan bo item
     public List<ShiperItemData> listItemShiperData;
 }
 

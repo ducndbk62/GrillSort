@@ -17,7 +17,7 @@ public class ViewBinder : MonoBehaviour
         return go;
     }
 
-    public SkewerView CreateSkewer(int x, int y, SkewerData skewerData, Transform transformParent, Vector3 localPos)
+    public SkewerView CreateSkewerData(int x, int y, SkewerData skewerData, Transform transformParent, Vector3 localPos)
     {
         var prefab = prefabLibrary.skewerPrefab;
         if (prefab == null)
@@ -32,17 +32,17 @@ public class ViewBinder : MonoBehaviour
         return skewerView;
     }
 
-    public GameObject CreateUISkewer(int idTest , Transform transform)
+    public GameObject CreateUISkewer(int idSkewer , Vector3 vecPos, Vector3 vecScale, Transform transParent)
     {
-        var prefab = prefabLibrary.skewerPrefabs[idTest].prefab;
+        var prefab = prefabLibrary.skewerPrefabs[idSkewer].prefab;
         if (prefab == null)
         {
             Debug.LogError($"Missing prefab");
             return null;
         }
-        var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
-        go.transform.localPosition = new Vector3(0,0.2f,0);
-        go.transform.localScale = new Vector3(0.9f,0.9f,1f);
+        var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, transParent);
+        go.transform.localPosition = vecPos;
+        go.transform.localScale = vecScale;
         return go;
     }
 
@@ -52,6 +52,32 @@ public class ViewBinder : MonoBehaviour
         if (prefab == null)
         {
             Debug.LogError($"Missing prefab for plate");
+            return null;
+        }
+        var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+        go.transform.localPosition = new Vector3(0, posY, 0);
+        return go;
+    }
+
+    public GameObject CreateTrayDoor(Transform transform)
+    {
+        var prefab = prefabLibrary.objTrayDoor;
+        if (prefab == null)
+        {
+            Debug.LogError($"Missing prefab for plate");
+            return null;
+        }
+        var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+        go.transform.localPosition = Vector3.zero;
+        return go;
+    }
+
+    public GameObject CreateSkewerIce(float posY, Transform transform)
+    {
+        var prefab = prefabLibrary.objSkewerIce;
+        if (prefab == null)
+        {
+            Debug.LogError($"Missing prefab for objSkewerIce");
             return null;
         }
         var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
