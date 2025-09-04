@@ -9,6 +9,7 @@ public class LevelData
     public int totalIdSkewerGroups;
     public int victoryGrillCount;
     public List<GridCellData> gridCellData;
+    public List<ShiperSkewerData> shiperSkewerDatas;
 }
 
 [System.Serializable]
@@ -31,5 +32,19 @@ public class SkewerData
 {
     public int indexSlot;
     public int idSkewer;
+}
+
+[System.Serializable]
+public class ShiperSkewerData
+{
+    public int turnShow;
+    public List<ShiperItemData> listItemShiperData;
+}
+
+[System.Serializable]
+public class ShiperItemData
+{
+    public int idItem;
+    public int typeItem; // Cay, Ko Cay,.............
 }
 
